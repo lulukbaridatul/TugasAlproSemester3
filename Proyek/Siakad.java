@@ -149,6 +149,33 @@ public class Siakad {
             }
         }
     }
+	
+	public static void UAS(){
+	if (jumlahData==0) {
+            System.out.println("Tidak ada data");
+        } else {
+            int jarak = jumlahData;
+            int susut = 13;
+            int urut = 0;
+            while(urut == 0) {
+                jarak = (jarak*10) / susut;
+                if(jarak <= 1) {
+                    jarak = 1;
+                    urut = 1;
+                }
+                for(int i=0; (i+jarak)<jumlahData; i++) {
+                    if(mahasiswa[i].getNim() > mahasiswa[i+jarak].getNim()) {
+                        Mahasiswa temp = mahasiswa[i];
+                        mahasiswa[i] = mahasiswa[i+jarak];
+                        mahasiswa[i+jarak] = temp;
+                        urut = 0;
+                    }
+                }
+            }
+            System.out.println("Data telah diurutkan. Silahkan tampilkan data");
+			}
+	}
+	
     public static void main (String[] args) {
         Scanner scan = new Scanner(System.in);
         int menu;
@@ -160,7 +187,8 @@ public class Siakad {
             System.out.println("4. Cari Data");
             System.out.println("5. Edit Data");
             System.out.println("6. Hapus Data");
-            System.out.println("7. Keluar");
+            System.out.println("7. UAS");
+			System.out.println("8. Keluar");
             System.out.print("Pilih menu = ");
             menu = scan.nextInt();
             if (menu==1) {
@@ -175,8 +203,10 @@ public class Siakad {
                 editData();
             }else if (menu==6){
                 hapusData();
+            }else if (menu==7){
+                UAS();
             }
 
-        } while (menu!=7);
+        } while (menu!=8);
     }
 }
